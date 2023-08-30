@@ -1,0 +1,64 @@
+import java.io.*;
+import java.util.*;
+
+class Solution {
+
+	public int[][] matrixTranspose(int[][]mat){
+
+		int[][]transposed=new int[mat.length][mat[0].length];
+		for(int row=0;row<mat.length;row++){
+			for(int col=0;col<mat[0].length;col++){
+				transposed[col][row]=mat[row][col];
+			}
+		}
+		return transposed;
+	}
+	
+    public void rotateBy90(int [][]mat) {
+        // Your code here
+
+		mat=matrixTranspose(mat);
+
+		for(int row=0;row<mat.length;row++){
+			int[]row1=mat[row];
+			int i=0;
+			int j=row1.length-1;
+
+			while(i<j){
+				int temp=row1[i];
+				row1[i]=row1[j];
+				row1[j]=temp;
+				i++;
+				j--;
+			}
+		}
+
+		for(int row=0;row<mat.length;row++){
+			for(int col=0;col<mat[0].length;col++){
+				System.out.print(mat[row][col]+" ");
+			}
+			System.out.println();
+		}
+		
+	}
+}
+
+		
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n, m;
+        n = sc.nextInt();
+        m = sc.nextInt();
+        int [][]mat=new int[n][m];
+        for(int i=0;i<n;++i){
+            for(int j=0;j<m;++j){
+                mat[i][j]=sc.nextInt();
+            }
+        }
+        Solution Obj = new Solution();
+        Obj.rotateBy90(mat);
+        System.out.println('\n');
+    }
+}
