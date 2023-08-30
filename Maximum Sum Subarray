@@ -17,6 +17,8 @@ public class Main {
   static int maxSubArraySum(int a[]) {
     // your code here
 
+
+//Brute Force
   int maxi=Integer.MIN_VALUE;
 
 	  for(int i=0;i<a.length;i++){
@@ -34,22 +36,24 @@ public class Main {
 
 
 	  
+// better t.c
+int maxi=Integer.MIN_VALUE;
+	  int sum=0;
 
-//       int n=a.length;
-// 	  int maxi=Integer.MIN_VALUE;
+	  for(int i=0;i<a.length;i++){
 
-// 	  // for(int i=0;i<n;i++){
-// 		   int sum=0;
-// 		  for(int j=0;j<n;j++){
-// 			  sum+=a[j];
-// 			  maxi=(int)Math.max(maxi,sum);
-// 			  if(sum<0)
-// 				  sum=0;
-// 		  }
+		  sum+=a[i];
 
-// 	  return maxi;
-//   }
-// }
+		  maxi=Integer.max(maxi,sum);
+		  if(sum<0){
+			  sum=0;
+		  }
+	  }
+
+	  return maxi;
+  }
+}
+
 
 
 
