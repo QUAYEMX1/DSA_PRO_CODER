@@ -1,0 +1,53 @@
+import java.util.*;
+
+class Solution{
+
+	static boolean isvalid(String str){
+		if(str.charAt(0)=='0'){
+			return false;
+		}
+
+		int num=Integer.parseInt(str);
+		return num<=255;
+	}
+	public static void helper(String s,int i,int par,String ans,ArrayList<String>res){
+
+		if(i==s.length() || par==4){
+			if(i==s.length() && par==4){
+				String ps=ans.substring(0,ans.length()-1);
+				res.add(ps);
+			}
+			return;
+		}
+
+
+		helper(s,i+1,par+1,ans+s.charAt(i)+".",res);
+
+		if(i+2 <= s.length() && isvalid(s.substring(i,i+2)))
+			helper(s,i+2,par+1,ans+s.substring(i,i+2)+".",res);
+
+		if(i+3 <= s.length() && isvalid(s.substring(i,i+3)))
+			helper(s,i+3,par+1,ans+s.substring(i,i+3)+".",res);
+	}
+    public static ArrayList<String> ValidIP(String s){
+        //write code here
+
+		ArrayList<String> ans=new ArrayList<>();
+
+		helper(s,0,0,"",ans);
+
+		return ans;	
+}
+}
+
+public class Main {
+    public static void main(String[] args) throws Throwable {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        Solution obj = new Solution();
+        ArrayList<String> ans = obj.ValidIP(s);
+        for(String i:ans){
+            System.out.println(i);
+        }
+    }
+}
